@@ -28,6 +28,4 @@ response = bedrock.invoke_model(
     accept= "*/*",
     contentType="application/json" )
 response_body = json.loads(response.get("body").read())
-
-
 print(response_body['completion'])
