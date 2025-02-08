@@ -1,0 +1,26 @@
+{
+  "ResponseMetadata": {
+    "RequestId": "2c66c255-b77b-4f1c-9716-a45ea475e0da",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "date": "Fri, 07 Feb 2025 14:27:25 GMT",
+      "content-type": "application/json",
+      "content-length": "461",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "2c66c255-b77b-4f1c-9716-a45ea475e0da"
+    },
+    "RetryAttempts": 0
+  },
+  "invocationArn": "arn:aws:bedrock:us-east-1:448049799059:async-invoke/q90dnojdlsoa",
+  "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-reel-v1:0",
+  "clientRequestToken": "a85e6598-f70f-4dc1-b091-dd56428fa1a8",
+  "status": "Completed",
+  "submitTime": "2025-02-07 14:23:38+00:00",
+  "lastModifiedTime": "2025-02-07 14:27:21+00:00",
+  "endTime": "2025-02-07 14:27:21+00:00",
+  "outputDataConfig": {
+    "s3OutputDataConfig": {
+      "s3Uri": "s3://bedrock-kb-us-east-1-448049799059/q90dnojdlsoa"
+    }
+  }
+}

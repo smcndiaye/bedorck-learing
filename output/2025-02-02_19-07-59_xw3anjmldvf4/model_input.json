@@ -1,0 +1,12 @@
+{
+  "taskType": "TEXT_VIDEO",
+  "textToVideoParams": {
+    "text": "Snake with two head going through beautiful garden. Camera zoom in."
+  },
+  "videoGenerationConfig": {
+    "durationSeconds": 6,
+    "fps": 24,
+    "dimension": "1280x720",
+    "seed": 1702301806
+  }
+}

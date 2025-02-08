@@ -1,0 +1,15 @@
+{
+  "ResponseMetadata": {
+    "RequestId": "6a131cc9-2469-4d8b-a18d-1b1cbadeb0ca",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "date": "Sun, 02 Feb 2025 18:08:00 GMT",
+      "content-type": "application/json",
+      "content-length": "84",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "6a131cc9-2469-4d8b-a18d-1b1cbadeb0ca"
+    },
+    "RetryAttempts": 0
+  },
+  "invocationArn": "arn:aws:bedrock:us-east-1:430118855470:async-invoke/xw3anjmldvf4"
+}

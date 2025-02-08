@@ -10,7 +10,7 @@ from io import BytesIO
 bedrock = boto3.client(service_name="bedrock-runtime")
 
 
-prompt = "Tom and Jerry runig on the moon"
+prompt = "Generate image a book with title 'Murmures du coeur ' and a man with maroon color seating  a side "
 body = json.dumps(
     {
         "taskType": "TEXT_IMAGE",

@@ -1,0 +1,12 @@
+{
+  "taskType": "TEXT_VIDEO",
+  "textToVideoParams": {
+    "text": "4 kids writing their homework at the thir classroom"
+  },
+  "videoGenerationConfig": {
+    "durationSeconds": 6,
+    "fps": 24,
+    "dimension": "1280x720",
+    "seed": 2029781099
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "taskType": "TEXT_VIDEO",
+  "textToVideoParams": {
+    "text": "2 kids walking on the street with thier back bag and a dog"
+  },
+  "videoGenerationConfig": {
+    "durationSeconds": 6,
+    "fps": 24,
+    "dimension": "1280x720",
+    "seed": 2136126352
+  }
+}
