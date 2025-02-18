@@ -3,7 +3,8 @@ import json
 
 prompt_data = """
 
-Act as Shakespeare and write a poem on generative AI 
+Act as Sr manager and provide a detailed explanation of the following:
+how to manage a team of 10 people, how to handle a difficult team member, how to handle a difficult situation, how to handle a difficult client, how to handle a difficult project
 """
 
 bedrock = boto3.client(service_name='bedrock-runtime')
@@ -24,7 +25,7 @@ model_id = "anthropic.claude-v2:1"
 
 response = bedrock.invoke_model(
     body=body,
-    modelId = "anthropic.claude-v2:1",
+    modelId = model_id,
     accept= "*/*",
     contentType="application/json" )
 response_body = json.loads(response.get("body").read())
