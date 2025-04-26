@@ -10,7 +10,7 @@ from io import BytesIO
 bedrock = boto3.client(service_name="bedrock-runtime")
 
 
-prompt = "Generate image of tiny crab riding enormous iguana in a forest"
+prompt = "driver surounded by other people at the font of this vehicle scared"
 body = json.dumps(
     {
         "taskType": "TEXT_IMAGE",

@@ -3,8 +3,8 @@ import json
 
 prompt_data = """
 
-Act as Sr manager and provide a detailed explanation of the following:
-how to manage a team of 10 people, how to handle a difficult team member, how to handle a difficult situation, how to handle a difficult client, how to handle a difficult project
+Act as Data Scientist and provide a detailed explanation in less than 50 words of the following:
+Explore the power of AI agent for any given topic powered Gemini and CrewAI
 """
 
 bedrock = boto3.client(service_name='bedrock-runtime')

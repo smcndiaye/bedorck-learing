@@ -122,9 +122,9 @@ def main():
     setup_aws_session()
 
     # Configuration
-    S3_BUCKET = "bedrock-kb-us-east-1-448049799059"  # Change this to your unique bucket name
-    VIDEO_PROMPT = "2 kids walking on the street with thier back bag and a dog"
-    MODEL_ID = "amazon.nova-reel-v1:0"
+    S3_BUCKET = "bedrock-kb-us-east-1-954976291351"  # Change this to your unique bucket name
+    VIDEO_PROMPT = "8 african women working on their field "  # Change this to your desired prompt
+    MODEL_ID = DEFAULT_MODEL_ID
 
     # Generate video
     invocation_arn = generate_video(S3_BUCKET, VIDEO_PROMPT, MODEL_ID)

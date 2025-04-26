@@ -3,7 +3,7 @@ import numpy as np
 import json
 
 # Initialize Bedrock client
-bedrock = boto3.client(service_name='bedrock-runtime', region_name='us-west-2')
+bedrock = boto3.client(service_name='bedrock-runtime', region_name='us-west-1')
 
 # Sample documents (in a real application, use a proper vector database)
 documents = [
