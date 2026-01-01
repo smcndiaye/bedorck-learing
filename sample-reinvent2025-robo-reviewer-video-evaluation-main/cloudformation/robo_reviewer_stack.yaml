@@ -1,0 +1,117 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Robo-Reviewer Video Evaluation - Complete SageMaker Setup'
+
+Resources:
+  # S3 Bucket for video storage
+  VideoStorageBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "robo-reviewer-videos-${AWS::StackName}-${AWS::AccountId}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+
+  # IAM Role for SageMaker/Notebook execution
+  RoboReviewerExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - sagemaker.amazonaws.com
+                - ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonBedrockFullAccess
+      Policies:
+        - PolicyName: SageMakerNotebookAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sagemaker:CreatePresignedNotebookInstanceUrl
+                  - sagemaker:DescribeNotebookInstance
+                Resource: !Sub "arn:aws:sagemaker:${AWS::Region}:${AWS::AccountId}:notebook-instance/*"
+        - PolicyName: S3Access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                  - s3:ListBucket
+                Resource:
+                  - !Sub "arn:aws:s3:::${VideoStorageBucket}/*"
+                  - !Sub "arn:aws:s3:::${VideoStorageBucket}"
+        - PolicyName: BedrockAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                  - bedrock:StartAsyncInvoke
+                  - bedrock:GetAsyncInvoke
+                  - bedrock:ListFoundationModels
+                  - bedrock:GetFoundationModel
+                Resource:
+                  - !Sub "arn:aws:bedrock:${AWS::Region}::foundation-model/amazon.nova-reel-v1:1"
+                  - !Sub "arn:aws:bedrock:${AWS::Region}::foundation-model/us.amazon.nova-premier-v1:0"
+                  - !Sub "arn:aws:bedrock:${AWS::Region}::foundation-model/amazon.titan-embed-image-v1"
+                  - !Sub "arn:aws:bedrock:*:${AWS::AccountId}:inference-profile/*"
+              - Effect: Allow
+                Action:
+                  - bedrock:ListFoundationModels
+                  - bedrock:GetFoundationModel
+                Resource: "*"
+        - PolicyName: CloudFormationAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - cloudformation:ListStacks
+                  - cloudformation:DescribeStacks
+                Resource: 
+                  - !Sub "arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/${AWS::StackName}/*"
+                  - !Sub "arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/robo-reviewer*/*"
+        - PolicyName: SSMAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ssm:GetParameter
+                Resource: 
+                  - !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/robo-reviewer/*"
+
+  # SSM Parameter for S3 bucket name
+  S3BucketParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /robo-reviewer/s3-bucket-name
+      Type: String
+      Value: !Ref VideoStorageBucket
+      Description: S3 bucket name for robo-reviewer video storage
+
+  # SageMaker Notebook Instance
+  NotebookInstance:
+    Type: AWS::SageMaker::NotebookInstance
+    Properties:
+      NotebookInstanceName: !Sub "robo-reviewer-notebook-${AWS::AccountId}"
+      InstanceType: ml.t3.xlarge
+      RoleArn: !GetAtt RoboReviewerExecutionRole.Arn
+      VolumeSizeInGB: 20
+      DirectInternetAccess: Enabled
+

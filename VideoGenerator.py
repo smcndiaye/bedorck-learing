@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 # Constants
 DEFAULT_MODEL_ID = "amazon.nova-reel-v1:0"
 
+
 def setup_aws_session(region="us-east-1"):
     """Set up AWS session with default region"""
     boto3.setup_default_session(region_name=region)
@@ -122,7 +123,8 @@ def main():
     setup_aws_session()
 
     # Configuration
-    S3_BUCKET = "bedrock-kb-us-east-1-954976291351"  # Change this to your unique bucket name
+
+    S3_BUCKET = "demo-real-nova"  # Change this to your unique bucket name
     VIDEO_PROMPT = "8 african women working on their field "  # Change this to your desired prompt
     MODEL_ID = DEFAULT_MODEL_ID
 

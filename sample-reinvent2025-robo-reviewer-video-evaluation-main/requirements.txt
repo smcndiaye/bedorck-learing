@@ -1,0 +1,6 @@
+boto3>=1.40.40
+matplotlib>=3.10.5
+opencv-python>=4.12.0.88
+numpy>=2.2.6
+Pillow>=11.3.0  # Fixed GHSA-xg8h-j46f-w952 vulnerability
+tqdm>=4.67.1
