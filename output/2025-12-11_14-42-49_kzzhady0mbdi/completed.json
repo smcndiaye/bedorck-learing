@@ -1,0 +1,26 @@
+{
+  "ResponseMetadata": {
+    "RequestId": "c71d6abe-1c48-4d16-9cbf-d3db0b2c0d20",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "date": "Thu, 11 Dec 2025 13:44:56 GMT",
+      "content-type": "application/json",
+      "content-length": "442",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "c71d6abe-1c48-4d16-9cbf-d3db0b2c0d20"
+    },
+    "RetryAttempts": 0
+  },
+  "invocationArn": "arn:aws:bedrock:us-east-1:945252183307:async-invoke/kzzhady0mbdi",
+  "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-reel-v1:0",
+  "clientRequestToken": "86473f77-d309-44eb-902a-ad44a0736b3b",
+  "status": "Completed",
+  "submitTime": "2025-12-11 13:42:49+00:00",
+  "lastModifiedTime": "2025-12-11 13:44:52+00:00",
+  "endTime": "2025-12-11 13:44:19+00:00",
+  "outputDataConfig": {
+    "s3OutputDataConfig": {
+      "s3Uri": "s3://demo-real-nova/kzzhady0mbdi"
+    }
+  }
+}
